@@ -5,7 +5,7 @@ import time
 
 #Create Web driver and access frontend URL with a specific userid
 driver = webdriver.Chrome(service=Service("/Users/edubnik/Downloads/chromedriver_mac_arm64"))
-user_id = "4"
+user_id = "1000"
 driver.get('http://127.0.0.1:5001/users/get_user_data/' + user_id)
 time.sleep(10) 
 
