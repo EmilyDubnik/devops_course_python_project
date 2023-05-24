@@ -8,43 +8,43 @@ pipeline {
             }
         }
         
-        stage('Run requirements') {
+        stage('Run Requirements File') {
             steps {
                 sh ' python3 -m pip install -r requirements.txt '
             }
         }       
         
-        stage('Run backend server') {
+        stage('Run Backend Server') {
             steps {
                 sh ' nohup python3 rest_app.py &'
             }
         }
         
-        stage('Run frontend server') {
+        stage('Run Frontend Server') {
             steps {
                 sh ' nohup python3 web_app.py &'
             }
         }
         
-        stage('Run backend Testing') {
+        stage('Run Backend Testing') {
             steps {
                 sh 'python3 backend_testing.py'
             }
         }
         
-        stage('Run frontend testing') {
+        stage('Run Frontend Testing') {
             steps {
                 sh 'python3 frontend_testing.py'
             }
         }
         
-        stage('Run combined testing') {
+        stage('Run Combined Testing') {
             steps {
                 sh 'python3 combined_testing.py'
             }
         }
         
-        stage('Run clean environment') {
+        stage('Run Clean Environment') {
             steps {
                 sh 'python3 clean_environment.py'
             }
