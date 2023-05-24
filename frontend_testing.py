@@ -7,7 +7,7 @@ import time
 driver = webdriver.Chrome(service=Service("/Users/edubnik/Downloads/chromedriver_mac_arm64"))
 user_id = "4"
 driver.get('http://127.0.0.1:5001/users/get_user_data/' + user_id)
-time.sleep(30) 
+time.sleep(10) 
 
 #Locate the username according the the ID locator and print the result
 user_element = driver.find_element(By.ID, "user")
