@@ -18,7 +18,9 @@ def get_request(user_id):
 
 def main():
     #Asking the user to input a user_id and user_name and posting the inputs to the DB
-    user_id,user_name = input('Please Insert a unique User ID and a User Name to Insert to "Users" table: \n').split()
+    #user_id,user_name = input('Please Insert a unique User ID and a User Name to Insert to "Users" table: \n').split()
+    user_id = "6"
+    user_name = "Yarin"
     post_res = post_request(user_id, user_name)
 
     #Getting the Username by userid and checking if it matched original input
