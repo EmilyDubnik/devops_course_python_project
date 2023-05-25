@@ -1,5 +1,4 @@
 import json
-
 import requests
 import db_connector
 
