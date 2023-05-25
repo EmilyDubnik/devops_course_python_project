@@ -1,6 +1,14 @@
 pipeline {
     agent any
     
+    triggers {
+        pollSCM('H/30 * * * *')
+    }
+    
+    options {
+        buildDiscarder(logRotator(5, 20))
+    }
+    
     stages {
         stage('Pull Code') {
             steps {
