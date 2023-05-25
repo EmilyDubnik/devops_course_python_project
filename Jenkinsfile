@@ -6,7 +6,7 @@ pipeline {
     }
     
     options {
-        buildDiscarder(logRotator(5, 20))
+        buildDiscarder(logRotator(numToKeepStr: '20', artifactDaysToKeepStr: '5'))
     }
     
     stages {
