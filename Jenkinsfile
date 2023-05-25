@@ -8,12 +8,6 @@ pipeline {
             }
         }
         
-         stage('Connect to DB') {
-            steps {
-                sh ' python3 db_connector.py sql12620882 kd78QZNUtN'
-            }
-        }
-        
         stage('Run Backend Server') {
             steps {
                 sh ' nohup python3 rest_app.py &'
