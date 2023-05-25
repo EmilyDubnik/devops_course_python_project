@@ -1,9 +1,13 @@
 from datetime import datetime
 import pymysql
+import sys
+
+username = sys.argv[1]
+password = sys.argv[2]
 
 # Connect to DB and get cursor
 def connect():
-    conn = pymysql.connect(host='sql12.freemysqlhosting.net', port=3306, user='sql12620882', passwd='kd78QZNUtN',
+    conn = pymysql.connect(host='sql12.freemysqlhosting.net', port=3306, user=username, passwd=password,
                            db='sql12620882')
     conn.autocommit(True)
     cursor = conn.cursor(pymysql.cursors.DictCursor)
