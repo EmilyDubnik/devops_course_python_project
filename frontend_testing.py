@@ -10,8 +10,11 @@ driver.get('http://127.0.0.1:5001/users/get_user_data/' + user_id)
 time.sleep(10) 
 
 #Locate the username according the the ID locator and print the result
-user_element = driver.find_element(By.ID, "user")
-print(user_element)
-user_name = user_element.text
-print("User name: " + user_name)
+try:
+  user_element = driver.find_element(By.ID, "user")
+  print(user_element)
+  user_name = user_element.text
+  print("User name: " + user_name)
+except:
+  print("User wasn't found in DB")
 driver.quit()
