@@ -8,6 +8,12 @@ pipeline {
             }
         }
         
+        stage('Install Requirenments') {
+           steps {
+                sh ' python3 -m pip install -r requirements.txt '
+            }
+        } 
+        
         stage('Run Backend Server') {
             steps {
                 sh ' nohup python3 rest_app.py &'
