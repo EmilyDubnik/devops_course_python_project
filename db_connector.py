@@ -3,8 +3,8 @@ import pymysql
 
 # Connect to DB and get cursor
 def connect():
-    conn = pymysql.connect(host='sql12.freemysqlhosting.net', port=3306, user='sql12620882', passwd='kd78QZNUtN',
-                           db='sql12620882')
+    conn = pymysql.connect(host='sql7.freemysqlhosting.net', port=3306, user='sql7626862', passwd='G3ifPCRmwN',
+                           db='sql7626862')
     conn.autocommit(True)
     cursor = conn.cursor(pymysql.cursors.DictCursor)
     return conn, cursor
