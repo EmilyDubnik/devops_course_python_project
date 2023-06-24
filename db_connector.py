@@ -3,8 +3,8 @@ import pymysql
 
 # Connect to DB and get cursor
 def connect():
-    conn = pymysql.connect(host='sql7.freemysqlhosting.net', port=3306, user='sql7626862', passwd='G3ifPCRmwN',
-                           db='sql7626862')
+    conn = pymysql.connect(host='sql7.freemysqlhosting.net', port=3306, user='sql7628457', passwd='HFIvTqAI7e',
+                           db='sql7628457')
     conn.autocommit(True)
     cursor = conn.cursor(pymysql.cursors.DictCursor)
     return conn, cursor
@@ -19,7 +19,7 @@ def add_user(user_id,user_name):
     conn, cursor = connect()
     now = datetime.now()
     dt_string = now.strftime("%d/%m/%Y %H:%M")
-    sql_query = f"INSERT INTO users (user_id,user_name,creation_date)" + "\n" + f"VALUES (%s,%s,%s)"
+    sql_query = f"INSERT INTO usersEmily (user_id,user_name,creation_date)" + "\n" + f"VALUES (%s,%s,%s)"
     val = (int(user_id),user_name,dt_string)
     try:
         cursor.execute(sql_query, val)
@@ -31,7 +31,7 @@ def add_user(user_id,user_name):
 #Select all from table
 def select_all_from_table():
     conn, cursor = connect()
-    sql_query = f"SELECT * FROM users"
+    sql_query = f"SELECT * FROM usersEmily"
     cursor.execute(sql_query)
     rows = cursor.fetchall()
     for row in rows:
@@ -41,7 +41,7 @@ def select_all_from_table():
 #Get user_name by user_id
 def get_user_name_by_user_id(user_id):
     conn, cursor = connect()
-    sql_query = "SELECT user_name FROM users WHERE user_id ='%s'"
+    sql_query = "SELECT user_name FROM usersEmily WHERE user_id ='%s'"
     cursor.execute(sql_query % user_id)
     try:
         result = cursor.fetchone()
@@ -53,7 +53,7 @@ def get_user_name_by_user_id(user_id):
 #Update Username by user_id
 def update_username(user_id,new_user_name):
     conn, cursor = connect()
-    sql_query = "UPDATE users SET user_name=%s WHERE user_id='%s'"
+    sql_query = "UPDATE usersEmily SET user_name=%s WHERE user_id='%s'"
     val=(new_user_name,int(user_id))
     cursor.execute(sql_query, val)
     try:
@@ -66,7 +66,7 @@ def update_username(user_id,new_user_name):
 #Delete User (row) by user_id
 def delete_user(user_id):
     conn, cursor = connect()
-    sql_query = "Delete from users WHERE user_id='%s'"
+    sql_query = "Delete from usersEmily WHERE user_id='%s'"
     cursor.execute(sql_query % user_id)
     try:
         cursor.fetchone()
