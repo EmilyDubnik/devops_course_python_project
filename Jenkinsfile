@@ -8,6 +8,9 @@ pipeline {
     options {
         buildDiscarder(logRotator(numToKeepStr: '20', artifactDaysToKeepStr: '5'))
     }
+    environment {
+    DOCKERHUB_CREDENTIALS = credentials('docker_hub')
+    }
 
     stages {
         stage('Pull Code') {
@@ -42,14 +45,20 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t rest_app:latest .'
+                sh 'docker build -t emydubnik/rest_app:latest .'
             }
         }
 
-        stage('Push Docker Image') {
+        stage('Login') {
             steps {
-                sh 'docker push rest_app:latest'
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
             }
+        }
+        stage('Push') {
+            steps {
+                sh 'docker push emydubnik/rest_app:latest'
+            }
+        }
         }
 
         stage('Set Compose Image Version') {
