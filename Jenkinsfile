@@ -8,6 +8,7 @@ pipeline {
     options {
         buildDiscarder(logRotator(numToKeepStr: '20', artifactDaysToKeepStr: '5'))
     }
+
     environment {
     DOCKERHUB_CREDENTIALS = credentials('docker_hub')
     }
@@ -58,7 +59,6 @@ pipeline {
             steps {
                 sh 'docker push emydubnik/rest_app:latest'
             }
-        }
         }
 
         stage('Set Compose Image Version') {
