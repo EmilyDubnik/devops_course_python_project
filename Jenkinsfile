@@ -83,7 +83,7 @@ pipeline {
         stage('Clean Environment') {
             steps {
                 sh 'docker-compose down'
-                sh 'docker rmi rest_app:latest'
+                sh 'docker emydubnik/rest_app:${BUILD_NUMBER}'
             }
         }
     }
