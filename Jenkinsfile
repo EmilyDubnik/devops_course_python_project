@@ -59,7 +59,7 @@ pipeline {
         }
         stage('Push') {
             steps {
-                sh 'docker push emydubnik/rest_app:latest'
+                sh 'docker push emydubnik/rest_app:${BUILD_NUMBER}'
             }
         }
 
