@@ -16,15 +16,15 @@ pipeline {
             }
         }
 
-        stage('Install Requirenments') {
-           steps {
-                sh ' python3 -m pip install -r requirenments.txt '
+        stage('Install Requirements') {
+            steps {
+                sh 'python3 -m pip install -r requirements.txt'
             }
         }
 
         stage('Run Backend Server') {
             steps {
-                sh ' nohup python3 rest_app.py &'
+                sh 'nohup python3 rest_app.py &'
             }
         }
 
@@ -37,12 +37,6 @@ pipeline {
         stage('Run Clean Environment') {
             steps {
                 sh 'python3 clean_environment.py'
-            }
-        }
-
-        stage('Build Docker Image') {
-            steps {
-                sh 'docker build -t rest_app:latest .'
             }
         }
 
@@ -69,6 +63,7 @@ pipeline {
                 sh 'python3 docker_backend_testing.py'
             }
         }
+
         stage('Clean Environment') {
             steps {
                 sh 'docker-compose down'
