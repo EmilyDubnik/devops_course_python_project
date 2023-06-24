@@ -45,5 +45,29 @@ pipeline {
                 sh 'docker build -t rest_app:latest .'
             }
         }
+
+        stage('Push Docker Image') {
+            steps {
+                sh 'docker push emydubnik/rest_app:latest'
+            }
+        }
+
+        stage('Set Compose Image Version') {
+            steps {
+                sh 'echo "IMAGE_TAG=${BUILD_NUMBER}" > .env'
+            }
+        }
+
+        stage('Run Docker Compose') {
+            steps {
+                sh 'docker-compose up -d'
+            }
+        }
+
+        stage('Test Dockerized App') {
+            steps {
+                sh 'python3 docker_backend_testing.py'
+            }
+        }
     }
 }
