@@ -1,42 +1,36 @@
 pipeline {
     agent any
-    
+
     triggers {
         pollSCM('H/30 * * * *')
     }
-    
+
     options {
         buildDiscarder(logRotator(numToKeepStr: '20', artifactDaysToKeepStr: '5'))
     }
-    
+
     stages {
         stage('Pull Code') {
             steps {
                 git 'https://github.com/EmilyDubnik/devops_course_python_project.git'
             }
         }
-        
-        stage('Install Requirenments') {
-           steps {
-                sh ' python3 -m pip install -r requirenments.txt '
-            }
-        } 
-        
-        stage('Run Backend Server') {
+
+        stage('Install Requirements') {
             steps {
-                sh ' nohup python3 rest_app.py &'
+                sh 'python3 -m pip install -r requirements.txt'
             }
         }
-        
+
+        stage('Run Backend Server') {
+            steps {
+                sh 'nohup python3 rest_app.py &'
+            }
+        }
+
         stage('Run Backend Testing') {
             steps {
                 sh 'python3 backend_testing.py'
-            }
-        }
-        
-        stage('Run Clean Environment') {
-            steps {
-                sh 'python3 clean_environment.py'
             }
         }
 
@@ -67,6 +61,13 @@ pipeline {
         stage('Test Dockerized App') {
             steps {
                 sh 'python3 docker_backend_testing.py'
+            }
+        }
+
+        stage('Clean Environment') {
+            steps {
+                sh 'docker-compose down'
+                sh 'docker rmi rest_app:latest'
             }
         }
     }
