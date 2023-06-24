@@ -40,9 +40,15 @@ pipeline {
             }
         }
 
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t rest_app:latest .'
+            }
+        }
+
         stage('Push Docker Image') {
             steps {
-                sh 'docker push emydubnik/rest_app:latest'
+                sh 'docker push rest_app:latest'
             }
         }
 
