@@ -46,7 +46,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t emydubnik/rest_app:latest .'
+                sh 'docker build -t emydubnik/rest_app:${BUILD_NUMBER} .'
             }
         }
 
